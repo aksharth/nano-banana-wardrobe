@@ -3,6 +3,7 @@
   "private": true,
   "version": "1.0.0",
   "description": "A virtual wardrobe and styling app where users can upload photos of their clothes and mix and match them to create new outfits",
+  "license": "MIT",
   "type": "module",
   "scripts": {
     "dev": "vite",
