@@ -168,7 +168,7 @@ const ClothingSelector = () => {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Header with tips */}
       {/* <div className="flex items-center justify-between">
         <h2 className="text-lg font-semibold text-foreground">Select clothes</h2>
@@ -182,7 +182,7 @@ const ClothingSelector = () => {
       {/* Upload area */}
       <div className="w-full">
           <div 
-            className="border-2 border-dashed border-upload-border bg-upload-area rounded-lg text-center hover:border-fitroom-teal transition-colors cursor-pointer relative min-h-[200px] sm:min-h-[250px] flex items-center justify-center touch-manipulation"
+            className="border-2 border-dashed border-upload-border bg-upload-area rounded-lg text-center hover:border-fitroom-teal transition-colors cursor-pointer relative min-h-[120px] flex items-center justify-center touch-manipulation"
             onClick={() => fileInputRef.current?.click()}
           >
             {previewUrl ? (
@@ -190,12 +190,12 @@ const ClothingSelector = () => {
                 <img 
                   src={previewUrl} 
                   alt="Uploaded clothing" 
-                  className="w-full h-full object-contain max-h-[180px]"
+                  className="w-full h-full object-contain max-h-[100px]"
                 />
                 <p className="text-xs text-muted-foreground mt-2">Click to change</p>
               </div>
             ) : (
-              <div className="p-8">
+              <div className="p-4">
                 <Plus className="w-6 h-6 text-fitroom-teal mx-auto mb-2" />
                 <p className="text-sm font-medium text-foreground">
                   Add clothes
@@ -230,15 +230,15 @@ const ClothingSelector = () => {
         </div>
         
         <div className={cn(
-          "grid gap-3",
-          showAllItems ? "grid-cols-2 sm:grid-cols-3 md:grid-cols-4" : "grid-cols-2 sm:grid-cols-3 md:grid-cols-4"
+          "grid gap-2",
+          showAllItems ? "grid-cols-4" : "grid-cols-4"
         )}>
           {recentItems.map((item) => (
             <div
               key={item.id}
               onClick={() => handleItemSelect(item)}
               className={cn(
-                "relative aspect-square rounded-lg overflow-hidden cursor-pointer border-2 transition-all min-h-[120px] min-w-[120px]",
+                "relative aspect-square rounded-lg overflow-hidden cursor-pointer border-2 transition-all",
                 selectedItem === item.id
                   ? "border-fitroom-teal"
                   : "border-transparent hover:border-fitroom-teal/50"

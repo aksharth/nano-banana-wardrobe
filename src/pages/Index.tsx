@@ -38,7 +38,7 @@ const MobileLayout = () => {
   const handleDownload = () => {
     if (generatedImage) {
       const link = document.createElement('a');
-      link.href = `data:image/png;base64,${generatedImage}`;
+      link.href = generatedImage;
       link.download = 'virtual-wardrobe-outfit.png';
       link.click();
     }
@@ -63,18 +63,12 @@ const MobileLayout = () => {
             <ArrowLeft className="w-4 h-4" />
             Back
           </Button>
-          <Button
-            variant="ghost"
-            size="sm"
-            onClick={handleRegenerate}
-          >
-            Regenerate
-          </Button>
+        
         </div>
         
         <div className="flex-1 flex items-center justify-center p-4">
           <img
-            src={`data:image/png;base64,${generatedImage}`}
+            src={generatedImage}
             alt="Generated outfit"
             className="max-w-full max-h-full object-contain rounded-lg"
           />
@@ -89,14 +83,7 @@ const MobileLayout = () => {
             <Download className="w-4 h-4 mr-2" />
             Download
           </Button>
-          <Button
-            variant="outline"
-            className="w-full"
-            size="lg"
-            disabled
-          >
-            Get FitRoom app
-          </Button>
+        
         </div>
       </div>
     );
@@ -105,10 +92,10 @@ const MobileLayout = () => {
   // Mobile view - main interface
   if (isMobile) {
     return (
-      <div className="min-h-screen bg-background flex flex-col">
+      <div className="min-h-screen bg-background flex flex-col relative">
         <FitRoomHeader />
         
-        <div className="flex-1 flex flex-col p-4 space-y-4">
+        <div className="flex-1 flex flex-col p-4 space-y-4 pb-24 overflow-y-auto">
           {/* Clothing Selector Section */}
           <div className="space-y-3">
             <h2 className="text-lg font-semibold">Select clothes</h2>
@@ -134,9 +121,11 @@ const MobileLayout = () => {
             </p>
             <ModelSelector />
           </div>
+        </div>
 
-          {/* Generate Button */}
-          <div className="mt-auto pt-4">
+        {/* Fixed Generate Button at Bottom */}
+        <div className="fixed bottom-0 left-0 right-0 bg-background/95 backdrop-blur-sm border-t px-4 pt-4 pb-safe z-50">
+          <div className="pb-4">
             <GenerateControls />
           </div>
         </div>
@@ -151,7 +140,7 @@ const MobileLayout = () => {
       
       <div className="flex h-[calc(100vh-80px)]">
         {/* Left Panel - Controls */}
-        <div className="w-96 p-6 space-y-6 overflow-y-auto border-r">
+        <div className="w-96 p-4 space-y-4 overflow-y-auto border-r">
           <ClothingSelector />
           <ModelSelector />
           <GenerateControls />
