@@ -182,7 +182,7 @@ const ClothingSelector = () => {
       {/* Upload area */}
       <div className="w-full">
           <div 
-            className="border-2 border-dashed border-upload-border bg-upload-area rounded-lg text-center hover:border-fitroom-teal transition-colors cursor-pointer relative min-h-[200px] flex items-center justify-center"
+            className="border-2 border-dashed border-upload-border bg-upload-area rounded-lg text-center hover:border-fitroom-teal transition-colors cursor-pointer relative min-h-[200px] sm:min-h-[250px] flex items-center justify-center touch-manipulation"
             onClick={() => fileInputRef.current?.click()}
           >
             {previewUrl ? (
@@ -222,7 +222,7 @@ const ClothingSelector = () => {
           <Button 
             variant="ghost" 
             size="sm" 
-            className="text-fitroom-teal text-sm"
+            className="text-fitroom-teal text-sm min-h-[44px] px-4"
             onClick={() => setShowAllItems(!showAllItems)}
           >
             {showAllItems ? 'Show less' : 'See all'}
@@ -231,14 +231,14 @@ const ClothingSelector = () => {
         
         <div className={cn(
           "grid gap-3",
-          showAllItems ? "grid-cols-4" : "grid-cols-4"
+          showAllItems ? "grid-cols-2 sm:grid-cols-3 md:grid-cols-4" : "grid-cols-2 sm:grid-cols-3 md:grid-cols-4"
         )}>
           {recentItems.map((item) => (
             <div
               key={item.id}
               onClick={() => handleItemSelect(item)}
               className={cn(
-                "relative aspect-square rounded-lg overflow-hidden cursor-pointer border-2 transition-all",
+                "relative aspect-square rounded-lg overflow-hidden cursor-pointer border-2 transition-all min-h-[120px] min-w-[120px]",
                 selectedItem === item.id
                   ? "border-fitroom-teal"
                   : "border-transparent hover:border-fitroom-teal/50"
