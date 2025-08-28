@@ -13,7 +13,6 @@
     "dev": "vite",
     "build": "vite build",
     "build:dev": "vite build --mode development",
-    "heroku-postbuild": "npm run build",
     "start": "node server.js",
     "lint": "eslint .",
     "preview": "vite preview"
