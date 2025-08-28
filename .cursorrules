@@ -1,0 +1,207 @@
+# Virtual Wardrobe - Cursor Rules
+
+## Project Overview
+Virtual Wardrobe is a React-based styling application that allows users to upload photos of their clothes and mix and match them to create new outfits. The app provides a virtual closet experience with modern UI components.
+
+## Tech Stack
+- **Frontend**: React 18 with TypeScript
+- **Build Tool**: Vite
+- **Styling**: Tailwind CSS
+- **UI Components**: shadcn/ui
+- **State Management**: React Context API
+- **Icons**: Lucide React
+- **Routing**: React Router DOM
+
+## Code Style & Conventions
+
+### TypeScript
+- Use strict TypeScript settings
+- Define proper interfaces and types for all props and state
+- Prefer `interface` over `type` for object definitions
+- Use proper return types for functions
+
+### React
+- Use functional components with hooks
+- Follow React naming conventions (PascalCase for components)
+- Use proper dependency arrays in useEffect
+- Implement proper error boundaries where needed
+- Use React.memo for performance optimization when appropriate
+
+### File Structure
+- Components go in `/src/components/`
+- UI components (shadcn/ui) go in `/src/components/ui/`
+- Pages go in `/src/pages/`
+- Context providers go in `/src/context/`
+- Custom hooks go in `/src/hooks/`
+- Utilities go in `/src/utils/`
+- Types go in `/src/types/` (if separate from components)
+
+### Naming Conventions
+- Components: PascalCase (e.g., `ClothingSelector.tsx`)
+- Files: PascalCase for components, camelCase for utilities
+- Variables and functions: camelCase
+- Constants: UPPER_SNAKE_CASE
+- CSS classes: Use Tailwind utility classes, follow component naming
+
+### Styling
+- Use Tailwind CSS utility classes
+- Follow mobile-first responsive design principles
+- Use shadcn/ui components for consistent UI
+- Maintain design system consistency
+- Use proper spacing scale (4, 8, 16, 24, 32px)
+
+### Component Structure
+```tsx
+// Import order: external libraries, internal components, types, utils
+import React from 'react'
+import { Button } from '@/components/ui/button'
+import { ComponentProps } from './types'
+
+interface Props {
+  // Define props interface
+}
+
+export const ComponentName: React.FC<Props> = ({ prop1, prop2 }) => {
+  // Hooks at the top
+  // Event handlers
+  // Render logic
+  
+  return (
+    <div className="container mx-auto">
+      {/* JSX content */}
+    </div>
+  )
+}
+```
+
+### State Management
+- Use React Context for global state
+- Use useState for local component state
+- Use useReducer for complex state logic
+- Keep state as close to where it's used as possible
+
+### Performance
+- Use React.memo for expensive components
+- Implement proper key props in lists
+- Optimize images and assets
+- Use proper dependency arrays in useEffect and useCallback
+
+### Error Handling
+- Implement proper error boundaries
+- Handle async operations with try/catch
+- Provide user-friendly error messages
+- Log errors appropriately
+
+### Testing
+- Write unit tests for utility functions
+- Write integration tests for complex components
+- Use React Testing Library for component testing
+- Maintain good test coverage
+
+### Security
+- Sanitize user inputs
+- Validate file uploads
+- Use proper CORS settings
+- Never expose sensitive data in frontend
+
+### Accessibility
+- Use semantic HTML elements
+- Include proper ARIA attributes
+- Ensure keyboard navigation works
+- Maintain proper color contrast
+- Add alt text to images
+
+## Development Workflow
+
+### Git Workflow
+- Use meaningful commit messages
+- Create feature branches for new features
+- Use pull requests for code review
+- Keep commits atomic and focused
+
+### Code Review Checklist
+- [ ] Code follows TypeScript and React best practices
+- [ ] Components are properly typed
+- [ ] UI is responsive and accessible
+- [ ] Performance considerations are addressed
+- [ ] Error handling is implemented
+- [ ] Tests are written and passing
+- [ ] Documentation is updated
+
+### Common Patterns
+
+#### Context Provider Pattern
+```tsx
+const ContextProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const [state, setState] = useState(initialState)
+  
+  const value = {
+    state,
+    actions: {
+      updateState: setState
+    }
+  }
+  
+  return (
+    <Context.Provider value={value}>
+      {children}
+    </Context.Provider>
+  )
+}
+```
+
+#### Custom Hook Pattern
+```tsx
+export const useCustomHook = () => {
+  const [state, setState] = useState()
+  
+  const handleAction = useCallback(() => {
+    // Action logic
+  }, [])
+  
+  return { state, handleAction }
+}
+```
+
+## Project-Specific Rules
+
+### Virtual Wardrobe Features
+- All clothing items should have proper categorization
+- Image uploads should be optimized and validated
+- Outfit combinations should be saved efficiently
+- User preferences should be persisted
+- Mobile experience should be prioritized
+
+### File Upload Handling
+- Validate file types and sizes
+- Compress images appropriately
+- Handle upload errors gracefully
+- Provide upload progress feedback
+
+### UI/UX Guidelines
+- Follow fashion app design patterns
+- Use appropriate color schemes for fashion context
+- Implement smooth transitions and animations
+- Provide clear visual feedback for user actions
+- Maintain consistent spacing and typography
+
+## Environment Setup
+- Node.js v16+
+- Use npm for package management
+- Configure ESLint and Prettier
+- Set up proper VS Code/Cursor settings
+- Use TypeScript strict mode
+
+## Deployment
+- Build optimized production bundle
+- Ensure all environment variables are set
+- Test responsive design on multiple devices
+- Verify performance metrics
+- Check accessibility compliance
+
+## Resources
+- [React Documentation](https://react.dev/)
+- [TypeScript Handbook](https://www.typescriptlang.org/docs/)
+- [Tailwind CSS Documentation](https://tailwindcss.com/docs)
+- [shadcn/ui Documentation](https://ui.shadcn.com/)
+- [Accessibility Guidelines](https://www.w3.org/WAI/WCAG21/quickref/)
