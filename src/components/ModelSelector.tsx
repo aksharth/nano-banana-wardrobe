@@ -25,7 +25,7 @@ const ModelSelector = () => {
   const ourModels = [
     { id: "1", image: modelWoman, name: "Female Model 1" },
     { id: "2", image: modelMan, name: "Male Model 1" },
-    { id: "4", image: modelMan1, name: "Male Model 2" },
+    { id: "3", image: modelMan1, name: "Male Model 2" },
     { id: "4", image: modelMan2, name: "Male Model 3" },
     { id: "5", image: modelWoman2, name: "Female Model 2" },
     { id: "6", image: modelWoman3, name: "Female Model 3" },
@@ -121,7 +121,7 @@ const ModelSelector = () => {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Header with tips */}
       {/* <div className="flex items-center justify-between">
         <h2 className="text-lg font-semibold text-foreground">Select a model</h2>
@@ -131,9 +131,9 @@ const ModelSelector = () => {
         </Button>
       </div> */}
 
-      <p className="text-sm text-muted-foreground">
+      {/* <p className="text-sm text-muted-foreground">
         Select our model or upload your model to try on
-      </p>
+      </p> */}
 
       {/* Tabs */}
       <div className="flex bg-fitroom-gray rounded-lg p-1">
@@ -165,7 +165,7 @@ const ModelSelector = () => {
       </div>
 
       {/* Models grid */}
-      <div className="grid grid-cols-4 gap-3">
+      <div className="grid grid-cols-4 gap-2">
         {activeTab === "our" ? (
           <>
             <div 
