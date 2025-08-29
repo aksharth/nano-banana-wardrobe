@@ -145,9 +145,12 @@ We welcome contributions! Please follow these steps:
 
 ## 🐛 Issues & Support
 
+⭐ **Star the repo to show support (it really helps).**  
+🐛 **Open an issue for bugs, ideas, or discussions.**
+
 If you encounter any issues or have questions:
 
-1. Check existing [Issues](https://github.com/yourusername/virtual-wardrobe/issues)
+1. Check existing [Issues](https://github.com/aksharth/nano-banana-wardrobe/issues)
 2. Create a new issue with detailed information
 3. Include steps to reproduce any bugs
 
