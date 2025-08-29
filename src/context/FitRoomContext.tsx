@@ -55,21 +55,8 @@ export const FitRoomProvider: React.FC<FitRoomProviderProps> = ({ children }) =>
     setError(null);
     setGeneratedImage(null);
 
-    const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
-    
-    if (!apiKey) {
-      const errorMsg = 'API key is missing. Please check your environment configuration.';
-      setError(errorMsg);
-      toast({
-        title: "Configuration Error",
-        description: errorMsg,
-        variant: "destructive",
-      });
-      setLoading(false);
-      return;
-    }
-
-    const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-image-preview:generateContent?key=${apiKey}`;
+    // Use backend API endpoint instead of exposing key in frontend
+    const apiUrl = '/api/generate';
     const payload = {
       contents: [{
         parts: [
