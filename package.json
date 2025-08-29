@@ -11,8 +11,10 @@
   },
   "scripts": {
     "dev": "vite",
+    "build": "vite build",
     "build:local": "vite build",
     "build:dev": "vite build --mode development",
+    "heroku-postbuild": "npm run build",
     "start": "node api-server.js",
     "lint": "eslint .",
     "preview": "vite preview"
