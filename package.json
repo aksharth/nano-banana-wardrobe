@@ -5,10 +5,15 @@
   "description": "A virtual wardrobe and styling app where users can upload photos of their clothes and mix and match them to create new outfits",
   "license": "MIT",
   "type": "module",
+  "engines": {
+    "node": "18.x",
+    "npm": ">=8.0.0"
+  },
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build:local": "vite build",
     "build:dev": "vite build --mode development",
+    "start": "node server.js",
     "lint": "eslint .",
     "preview": "vite preview"
   },
@@ -47,6 +52,7 @@
     "cmdk": "^1.1.1",
     "date-fns": "^3.6.0",
     "embla-carousel-react": "^8.6.0",
+    "express": "^4.21.2",
     "input-otp": "^1.4.2",
     "lucide-react": "^0.462.0",
     "next-themes": "^0.3.0",
@@ -76,6 +82,7 @@
     "eslint-plugin-react-refresh": "^0.4.20",
     "globals": "^15.15.0",
     "postcss": "^8.5.6",
+    "serve": "^14.2.4",
     "tailwindcss": "^3.4.17",
     "typescript": "^5.8.3",
     "typescript-eslint": "^8.38.0",
