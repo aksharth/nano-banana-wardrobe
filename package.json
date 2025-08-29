@@ -13,7 +13,7 @@
     "dev": "vite",
     "build:local": "vite build",
     "build:dev": "vite build --mode development",
-    "start": "node server.js",
+    "start": "node api-server.js",
     "lint": "eslint .",
     "preview": "vite preview"
   },
@@ -50,7 +50,9 @@
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "cmdk": "^1.1.1",
+    "cors": "^2.8.5",
     "date-fns": "^3.6.0",
+    "dotenv": "^17.2.1",
     "embla-carousel-react": "^8.6.0",
     "express": "^4.21.2",
     "input-otp": "^1.4.2",
