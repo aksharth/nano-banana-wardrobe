@@ -5,12 +5,15 @@ Virtual Wardrobe is a React-based styling application that allows users to uploa
 
 ## Tech Stack
 - **Frontend**: React 18 with TypeScript
+- **Backend**: Express.js with secure API proxy
 - **Build Tool**: Vite
 - **Styling**: Tailwind CSS
 - **UI Components**: shadcn/ui
 - **State Management**: React Context API
 - **Icons**: Lucide React
 - **Routing**: React Router DOM
+- **AI Integration**: Google Gemini 2.5 Flash Image API
+- **Deployment**: Single-instance architecture (Heroku)
 
 ## Code Style & Conventions
 
@@ -35,6 +38,8 @@ Virtual Wardrobe is a React-based styling application that allows users to uploa
 - Custom hooks go in `/src/hooks/`
 - Utilities go in `/src/utils/`
 - Types go in `/src/types/` (if separate from components)
+- Backend server: `api-server.js` (root level)
+- Built frontend: `/dist/` (served by backend)
 
 ### Naming Conventions
 - Components: PascalCase (e.g., `ClothingSelector.tsx`)
@@ -99,10 +104,13 @@ export const ComponentName: React.FC<Props> = ({ prop1, prop2 }) => {
 - Maintain good test coverage
 
 ### Security
-- Sanitize user inputs
-- Validate file uploads
-- Use proper CORS settings
-- Never expose sensitive data in frontend
+- **API Key Protection**: NEVER use VITE_ prefix for API keys
+- **Backend Proxy**: All external API calls go through `/api/*` endpoints
+- **Environment Variables**: API keys stored server-side only (`.env` without VITE_ prefix)
+- **Network Security**: Zero API key exposure in browser/network requests
+- **Input Validation**: Sanitize user inputs and validate file uploads
+- **CORS**: Use proper CORS settings for frontend/backend communication
+- **Frontend Security**: Never expose sensitive data in frontend code
 
 ### Accessibility
 - Use semantic HTML elements
@@ -186,18 +194,33 @@ export const useCustomHook = () => {
 - Maintain consistent spacing and typography
 
 ## Environment Setup
-- Node.js v16+
+- Node.js v18+ (required for deployment)
 - Use npm for package management
 - Configure ESLint and Prettier
 - Set up proper VS Code/Cursor settings
 - Use TypeScript strict mode
+- **Environment Variables**: Create `.env` file with `GEMINI_API_KEY=your_key` (NO VITE_ prefix)
 
 ## Deployment
-- Build optimized production bundle
-- Ensure all environment variables are set
-- Test responsive design on multiple devices
-- Verify performance metrics
-- Check accessibility compliance
+
+### Local Development
+```bash
+npm run build:local  # Build frontend
+npm start           # Start backend server (serves frontend + API)
+```
+
+### Production (Heroku)
+- Single dyno runs `npm start` → `node api-server.js`
+- Backend serves static files from `/dist/`
+- Backend provides `/api/generate` endpoint with secure API proxy
+- Environment variables set in Heroku config (no VITE_ prefix)
+
+### Security Checklist
+- [ ] API keys are server-side only (no VITE_ prefix)
+- [ ] Frontend calls `/api/generate` (not direct Google API)
+- [ ] No sensitive data in frontend bundle
+- [ ] Network requests don't expose API keys
+- [ ] Backend proxy handles all external API calls
 
 ## Resources
 - [React Documentation](https://react.dev/)

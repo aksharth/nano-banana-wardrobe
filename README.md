@@ -40,39 +40,46 @@ A modern virtual wardrobe and styling application powered by **nano banana Gemin
    ```
 
 3. **Set up environment variables**
+   Create a `.env` file in the root directory:
    ```bash
-   # Copy the example environment file
-   cp .env.example .env
+   GEMINI_API_KEY=your_api_key_here
    ```
    
-   Then edit the `.env` file and add your Google Gemini API key:
+   🔐 **Security Note**: 
+   - API key is kept server-side only (no VITE_ prefix)
+   - Never exposed to frontend/browser
    - Get your free API key from: https://aistudio.google.com/app/apikey
-   - Replace `your_gemini_api_key_here` with your actual API key
 
-4. **Start the development server**
+4. **Build and start the application**
    ```bash
-   npm run dev
+   # Build the frontend
+   npm run build:local
+   
+   # Start the full-stack server (frontend + backend)
+   npm start
    ```
 
 5. **Open your browser**
-   Navigate to `http://localhost:8080` to start using the app!
+   Navigate to `http://localhost:8082` to start using the app!
 
 ## 🛠️ Built With
 
 - **Frontend Framework**: React 18 with TypeScript
+- **Backend**: Express.js with secure API proxy
 - **Build Tool**: Vite
 - **Styling**: Tailwind CSS
 - **UI Components**: shadcn/ui
 - **Icons**: Lucide React
 - **State Management**: React Context API
 - **Routing**: React Router DOM
+- **AI Integration**: Google Gemini 2.5 Flash Image API
 
 ## 📁 Project Structure
 
 ```
 virtual-wardrobe/
-├── src/
-│   ├── components/          # Reusable UI components
+├── src/                    # Frontend React application
+│   ├── components/         # Reusable UI components
 │   │   ├── ui/             # shadcn/ui components
 │   │   ├── ClothingSelector.tsx
 │   │   ├── ModelSelector.tsx
@@ -83,9 +90,20 @@ virtual-wardrobe/
 │   ├── pages/              # Page components
 │   ├── utils/              # Utility functions
 │   └── assets/             # Images and static assets
+├── api-server.js           # Express backend with secure API proxy
+├── dist/                   # Built frontend assets
 ├── public/                 # Static files
 └── ...config files
 ```
+
+## 🔐 Security Architecture
+
+**Secure API Proxy Pattern**:
+- ✅ API keys stored server-side only
+- ✅ Frontend calls `/api/generate` (no direct Google API access)
+- ✅ Backend proxies requests with API key injection
+- ✅ Zero API key exposure in browser/network requests
+- ✅ Single-instance deployment (frontend + backend combined)
 
 ## 🎯 Usage
 
@@ -114,10 +132,16 @@ We welcome contributions! Please follow these steps:
 
 ## 📝 Scripts
 
-- `npm run dev` - Start development server
-- `npm run build` - Build for production
-- `npm run preview` - Preview production build
+- `npm run dev` - Start frontend development server (development only)
+- `npm run build:local` - Build frontend for production
+- `npm start` - Start full-stack server (frontend + backend)
 - `npm run lint` - Run ESLint
+- `npm run preview` - Preview production build
+
+**Production Deployment**:
+- Heroku automatically runs the backend server
+- Frontend is served as static files from `/dist`
+- API endpoint `/api/generate` handles secure image generation
 
 ## 🐛 Issues & Support
 
