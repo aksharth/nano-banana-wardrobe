@@ -2,12 +2,16 @@ import express from 'express';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import cors from 'cors';
+import dotenv from 'dotenv';
+
+// Load environment variables
+dotenv.config();
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const app = express();
-const port = process.env.PORT || 8082;
+const port = process.env.PORT || 8099;
 
 // Enable CORS for frontend
 app.use(cors());
@@ -20,7 +24,11 @@ app.use(express.static(path.join(__dirname, 'dist')));
 app.post('/api/generate', async (req, res) => {
   const apiKey = process.env.GEMINI_API_KEY; // Note: NOT VITE_ prefix
   
+  console.log('API Request received:', new Date().toISOString());
+  console.log('API Key available:', !!apiKey);
+  
   if (!apiKey) {
+    console.error('API key not configured');
     return res.status(500).json({ error: 'API key not configured' });
   }
 
@@ -42,8 +50,9 @@ app.post('/api/generate', async (req, res) => {
     
     res.json(data);
   } catch (error) {
-    console.error('API Error:', error);
-    res.status(500).json({ error: 'Failed to generate image' });
+    console.error('API Error:', error.message);
+    console.error('Full error:', error);
+    res.status(500).json({ error: 'Failed to generate image: ' + error.message });
   }
 });
 
